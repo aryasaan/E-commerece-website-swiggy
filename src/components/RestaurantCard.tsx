@@ -33,6 +33,7 @@ export function RestaurantCard({
   onAddToCart,
 }: RestaurantCardProps) {
   const { toast } = useToast();
+  const fallbackImage = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop";
 
   const handleAddToCart = (item: MenuItem) => {
     onAddToCart(item);
@@ -42,13 +43,18 @@ export function RestaurantCard({
     });
   };
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = fallbackImage;
+  };
+
   return (
     <div className="group relative overflow-hidden rounded-xl border bg-card transition-all duration-200 hover:shadow-lg">
       <div className="relative h-48 overflow-hidden">
         <img
-          src={image}
+          src={image || fallbackImage}
           alt={name}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          onError={handleImageError}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-4 left-4 right-4">
@@ -75,9 +81,10 @@ export function RestaurantCard({
                 >
                   <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
                     <img
-                      src={item.image || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500"}
+                      src={item.image || fallbackImage}
                       alt={item.name}
                       className="h-full w-full object-cover"
+                      onError={handleImageError}
                     />
                   </div>
                   <div className="flex flex-1 items-center justify-between">

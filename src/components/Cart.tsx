@@ -28,6 +28,7 @@ interface CartProps {
 export function Cart({ items, onRemoveItem, onUpdateQuantity }: CartProps) {
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
+  const fallbackImage = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop";
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -37,6 +38,10 @@ export function Cart({ items, onRemoveItem, onUpdateQuantity }: CartProps) {
       title: "Item removed",
       description: "Item has been removed from your cart.",
     });
+  };
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = fallbackImage;
   };
 
   return (
@@ -83,9 +88,10 @@ export function Cart({ items, onRemoveItem, onUpdateQuantity }: CartProps) {
                   >
                     <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
                       <img
-                        src={item.image || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500"}
+                        src={item.image || fallbackImage}
                         alt={item.name}
                         className="h-full w-full object-cover"
+                        onError={handleImageError}
                       />
                     </div>
                     <div className="flex flex-1 flex-col">

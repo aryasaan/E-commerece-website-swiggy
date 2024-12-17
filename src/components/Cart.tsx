@@ -16,6 +16,7 @@ interface CartItem {
   name: string;
   price: number;
   quantity: number;
+  image?: string;
 }
 
 interface CartProps {
@@ -78,46 +79,55 @@ export function Cart({ items, onRemoveItem, onUpdateQuantity }: CartProps) {
                 {items.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between space-x-4 rounded-lg border p-4"
+                    className="flex items-center gap-4 rounded-lg border p-4"
                   >
-                    <div className="space-y-1">
-                      <h4 className="font-medium">{item.name}</h4>
+                    <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+                      <img
+                        src={item.image || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500"}
+                        alt={item.name}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col">
+                      <div className="flex justify-between">
+                        <h4 className="font-medium">{item.name}</h4>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 text-destructive hover:text-destructive"
+                          onClick={() => handleRemoveItem(item.id)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
                       <p className="text-sm text-muted-foreground">
                         ${item.price.toFixed(2)}
                       </p>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="h-8 w-8"
-                        onClick={() =>
-                          onUpdateQuantity(item.id, Math.max(0, item.quantity - 1))
-                        }
-                      >
-                        <Minus className="h-4 w-4" />
-                      </Button>
-                      <span className="w-8 text-center font-medium">
-                        {item.quantity}
-                      </span>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="h-8 w-8"
-                        onClick={() =>
-                          onUpdateQuantity(item.id, item.quantity + 1)
-                        }
-                      >
-                        <Plus className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-destructive hover:text-destructive"
-                        onClick={() => handleRemoveItem(item.id)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
+                      <div className="mt-2 flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="h-8 w-8"
+                          onClick={() =>
+                            onUpdateQuantity(item.id, Math.max(0, item.quantity - 1))
+                          }
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                        <span className="w-8 text-center font-medium">
+                          {item.quantity}
+                        </span>
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="h-8 w-8"
+                          onClick={() =>
+                            onUpdateQuantity(item.id, item.quantity + 1)
+                          }
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 ))}

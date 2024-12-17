@@ -8,7 +8,6 @@ import { OffersBanner } from "@/components/OffersBanner";
 import { Cart } from "@/components/Cart";
 import { useToast } from "@/components/ui/use-toast";
 
-// Mock data with more restaurants and menu items
 const RESTAURANTS = [
   {
     id: "1",
@@ -18,9 +17,27 @@ const RESTAURANTS = [
     rating: 4.2,
     deliveryTime: "30-35 min",
     menuItems: [
-      { id: "1-1", name: "Whopper", price: 6.99 },
-      { id: "1-2", name: "Chicken Royale", price: 5.99 },
-      { id: "1-3", name: "Fries", price: 2.99 },
+      { 
+        id: "1-1", 
+        name: "Whopper", 
+        price: 6.99,
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500",
+        description: "Flame-grilled beef patty topped with tomatoes, lettuce, mayo"
+      },
+      { 
+        id: "1-2", 
+        name: "Chicken Royale", 
+        price: 5.99,
+        image: "https://images.unsplash.com/photo-1598679253544-2c97992403ea?w=500",
+        description: "Crispy chicken fillet topped with lettuce and mayo"
+      },
+      { 
+        id: "1-3", 
+        name: "Fries", 
+        price: 2.99,
+        image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=500",
+        description: "Golden crispy french fries"
+      },
     ],
   },
   {
@@ -31,9 +48,27 @@ const RESTAURANTS = [
     rating: 4.1,
     deliveryTime: "40-45 min",
     menuItems: [
-      { id: "2-1", name: "Pepperoni Pizza", price: 12.99 },
-      { id: "2-2", name: "Margherita Pizza", price: 10.99 },
-      { id: "2-3", name: "Garlic Bread", price: 4.99 },
+      { 
+        id: "2-1", 
+        name: "Pepperoni Pizza", 
+        price: 12.99,
+        image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500",
+        description: "Classic pepperoni pizza with mozzarella cheese"
+      },
+      { 
+        id: "2-2", 
+        name: "Margherita Pizza", 
+        price: 10.99,
+        image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500",
+        description: "Fresh tomatoes, mozzarella, and basil"
+      },
+      { 
+        id: "2-3", 
+        name: "Garlic Bread", 
+        price: 4.99,
+        image: "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=500",
+        description: "Freshly baked bread with garlic butter"
+      },
     ],
   },
   {

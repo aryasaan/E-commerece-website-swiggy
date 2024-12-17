@@ -1,5 +1,4 @@
 import { Star, Plus } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { useToast } from "./ui/use-toast";
@@ -8,6 +7,8 @@ interface MenuItem {
   id: string;
   name: string;
   price: number;
+  image?: string;
+  description?: string;
 }
 
 interface RestaurantCardProps {
@@ -56,7 +57,7 @@ export function RestaurantCard({
         </div>
       </div>
       <div className="p-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <Badge variant="secondary" className="flex items-center gap-1">
             <Star className="h-3.5 w-3.5 fill-primary text-primary" />
             <span>{rating}</span>
@@ -64,28 +65,42 @@ export function RestaurantCard({
           <span className="text-sm text-muted-foreground">{deliveryTime}</span>
         </div>
         {menuItems.length > 0 && (
-          <div className="mt-4 space-y-3">
+          <div className="space-y-4">
             <h4 className="font-medium text-card-foreground">Popular Items</h4>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {menuItems.slice(0, 3).map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center justify-between rounded-lg border p-2"
+                  className="flex items-center gap-3 rounded-lg border p-2"
                 >
-                  <div>
-                    <p className="text-sm font-medium">{item.name}</p>
-                    <p className="text-sm text-muted-foreground">
-                      ${item.price.toFixed(2)}
-                    </p>
+                  <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+                    <img
+                      src={item.image || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500"}
+                      alt={item.name}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-primary hover:text-primary"
-                    onClick={() => handleAddToCart(item)}
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
+                  <div className="flex flex-1 items-center justify-between">
+                    <div>
+                      <p className="font-medium">{item.name}</p>
+                      <p className="text-sm text-muted-foreground">
+                        ${item.price.toFixed(2)}
+                      </p>
+                      {item.description && (
+                        <p className="text-xs text-muted-foreground line-clamp-1">
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-primary hover:text-primary"
+                      onClick={() => handleAddToCart(item)}
+                    >
+                      <Plus className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               ))}
             </div>

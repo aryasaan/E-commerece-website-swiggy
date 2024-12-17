@@ -5,8 +5,10 @@ import { CuisineFilter } from "@/components/CuisineFilter";
 import { Header } from "@/components/Header";
 import { FoodCategories } from "@/components/FoodCategories";
 import { OffersBanner } from "@/components/OffersBanner";
+import { Cart } from "@/components/Cart";
+import { useToast } from "@/components/ui/use-toast";
 
-// Mock data - in a real app, this would come from an API
+// Mock data with more restaurants and menu items
 const RESTAURANTS = [
   {
     id: "1",
@@ -15,6 +17,11 @@ const RESTAURANTS = [
     cuisines: ["American", "Fast Food"],
     rating: 4.2,
     deliveryTime: "30-35 min",
+    menuItems: [
+      { id: "1-1", name: "Whopper", price: 6.99 },
+      { id: "1-2", name: "Chicken Royale", price: 5.99 },
+      { id: "1-3", name: "Fries", price: 2.99 },
+    ],
   },
   {
     id: "2",
@@ -23,6 +30,11 @@ const RESTAURANTS = [
     cuisines: ["Italian", "Fast Food"],
     rating: 4.1,
     deliveryTime: "40-45 min",
+    menuItems: [
+      { id: "2-1", name: "Pepperoni Pizza", price: 12.99 },
+      { id: "2-2", name: "Margherita Pizza", price: 10.99 },
+      { id: "2-3", name: "Garlic Bread", price: 4.99 },
+    ],
   },
   {
     id: "3",
@@ -31,6 +43,11 @@ const RESTAURANTS = [
     cuisines: ["Indian", "Curry"],
     rating: 4.4,
     deliveryTime: "35-40 min",
+    menuItems: [
+      { id: "3-1", name: "Butter Chicken", price: 14.99 },
+      { id: "3-2", name: "Naan Bread", price: 2.99 },
+      { id: "3-3", name: "Biryani", price: 13.99 },
+    ],
   },
   {
     id: "4",
@@ -39,20 +56,91 @@ const RESTAURANTS = [
     cuisines: ["Japanese", "Sushi"],
     rating: 4.5,
     deliveryTime: "45-50 min",
+    menuItems: [
+      { id: "4-1", name: "California Roll", price: 8.99 },
+      { id: "4-2", name: "Salmon Nigiri", price: 6.99 },
+      { id: "4-3", name: "Miso Soup", price: 3.99 },
+    ],
+  },
+  {
+    id: "5",
+    name: "Thai Spice",
+    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=500",
+    cuisines: ["Thai", "Asian"],
+    rating: 4.3,
+    deliveryTime: "40-45 min",
+    menuItems: [
+      { id: "5-1", name: "Pad Thai", price: 11.99 },
+      { id: "5-2", name: "Green Curry", price: 12.99 },
+      { id: "5-3", name: "Spring Rolls", price: 5.99 },
+    ],
   },
 ];
 
-const CUISINES = ["American", "Italian", "Indian", "Japanese", "Fast Food", "Sushi", "Curry"];
+const CUISINES = [
+  "American",
+  "Italian",
+  "Indian",
+  "Japanese",
+  "Thai",
+  "Fast Food",
+  "Sushi",
+  "Curry",
+  "Asian",
+];
+
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCuisine, setSelectedCuisine] = useState<string | null>(null);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { toast } = useToast();
 
   const filteredRestaurants = RESTAURANTS.filter((restaurant) => {
-    const matchesSearch = restaurant.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCuisine = selectedCuisine ? restaurant.cuisines.includes(selectedCuisine) : true;
+    const matchesSearch = restaurant.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchesCuisine = selectedCuisine
+      ? restaurant.cuisines.includes(selectedCuisine)
+      : true;
     return matchesSearch && matchesCuisine;
   });
+
+  const handleAddToCart = (item: { id: string; name: string; price: number }) => {
+    setCartItems((prev) => {
+      const existingItem = prev.find((i) => i.id === item.id);
+      if (existingItem) {
+        return prev.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      }
+      return [...prev, { ...item, quantity: 1 }];
+    });
+    toast({
+      title: "Added to cart",
+      description: `${item.name} has been added to your cart.`,
+    });
+  };
+
+  const handleRemoveFromCart = (id: string) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleUpdateQuantity = (id: string, quantity: number) => {
+    setCartItems((prev) =>
+      quantity === 0
+        ? prev.filter((item) => item.id !== id)
+        : prev.map((item) =>
+            item.id === id ? { ...item, quantity } : item
+          )
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -75,9 +163,19 @@ const Home = () => {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredRestaurants.map((restaurant) => (
-            <RestaurantCard key={restaurant.id} {...restaurant} />
+            <RestaurantCard
+              key={restaurant.id}
+              {...restaurant}
+              onAddToCart={handleAddToCart}
+            />
           ))}
         </div>
+
+        <Cart
+          items={cartItems}
+          onRemoveItem={handleRemoveFromCart}
+          onUpdateQuantity={handleUpdateQuantity}
+        />
       </div>
     </div>
   );

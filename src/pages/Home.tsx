@@ -6,6 +6,9 @@ import { Header } from "@/components/Header";
 import { FoodCategories } from "@/components/FoodCategories";
 import { OffersBanner } from "@/components/OffersBanner";
 import { Cart } from "@/components/Cart";
+import { Newsletter } from "@/components/Newsletter";
+import { TopRestaurants } from "@/components/TopRestaurants";
+import { Footer } from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
 
 const RESTAURANTS = [
@@ -196,6 +199,8 @@ const Home = () => {
           />
         </div>
 
+        <TopRestaurants />
+
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredRestaurants.map((restaurant) => (
             <RestaurantCard
@@ -206,12 +211,15 @@ const Home = () => {
           ))}
         </div>
 
+        <Newsletter />
+
         <Cart
           items={cartItems}
           onRemoveItem={handleRemoveFromCart}
           onUpdateQuantity={handleUpdateQuantity}
         />
       </div>
+      <Footer />
     </div>
   );
 };

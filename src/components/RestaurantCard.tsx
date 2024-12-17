@@ -15,7 +15,7 @@ interface RestaurantCardProps {
   cuisines: string[];
   rating: number;
   deliveryTime: string;
-  menuItems: MenuItem[];
+  menuItems?: MenuItem[];  // Make menuItems optional
   onAddToCart: (item: MenuItem) => void;
 }
 
@@ -26,7 +26,7 @@ export function RestaurantCard({
   cuisines,
   rating,
   deliveryTime,
-  menuItems,
+  menuItems = [],  // Provide default empty array
   onAddToCart,
 }: RestaurantCardProps) {
   return (

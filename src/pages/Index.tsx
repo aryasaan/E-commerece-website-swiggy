@@ -2,6 +2,9 @@ import { useState } from "react";
 import { SearchBar } from "@/components/SearchBar";
 import { RestaurantCard } from "@/components/RestaurantCard";
 import { CuisineFilter } from "@/components/CuisineFilter";
+import { Header } from "@/components/Header";
+import { FoodCategories } from "@/components/FoodCategories";
+import { OffersBanner } from "@/components/OffersBanner";
 
 // Mock data - in a real app, this would come from an API
 const RESTAURANTS = [
@@ -52,9 +55,11 @@ const Index = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4">
-        <h1 className="mb-8 text-4xl font-bold text-gray-900">Food Delivery</h1>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      <div className="container mx-auto px-4 py-8">
+        <OffersBanner />
+        <FoodCategories />
         
         <div className="mb-8">
           <SearchBar onSearch={setSearchQuery} />

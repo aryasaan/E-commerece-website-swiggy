@@ -1,6 +1,6 @@
 # Welcome to your Lovable project
 
-## Project info
+## Project Info
 
 **URL**: https://lovable.dev/projects/887934aa-b1d0-4060-af63-345dac69adf7
 

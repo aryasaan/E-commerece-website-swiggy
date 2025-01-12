@@ -9,7 +9,7 @@ This project is built with .
 
 ## demo
 <pre>
-  <a> href= "https://swiggy-taste-friend.netlify.app/"</a>
+  <a href = "https://swiggy-taste-friend.netlify.app/">https://swiggy-taste-friend.netlify.app/</a>
 </pre>
 
 

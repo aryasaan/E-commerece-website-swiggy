@@ -1,5 +1,37 @@
 ### features
-This project is built with .
+# Swiggy Clone Application
+
+## Overview
+This is a food delivery application inspired by Swiggy, designed to connect users with local restaurants and facilitate food ordering and delivery. The application allows users to browse restaurants, view menus, place orders, and track deliveries in real-time.
+
+## Features
+- User Registration and Authentication
+- Restaurant Listings with Search and Filter Options
+- Menu Browsing for Each Restaurant
+- Cart Management
+- Order Placement and Payment Integration
+- Real-time Order Tracking
+- User Reviews and Ratings for Restaurants
+- Admin Panel for Restaurant Management
+
+## Tech Stack
+- **Frontend:** React.js, Redux, HTML, CSS
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Payment Gateway:** Stripe or PayPal
+- **Real-time Communication:** Socket.io (for order tracking)
+
+## Installation
+
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB (local or cloud instance)
+- A payment gateway account (Stripe/PayPal)
+
+### Clone the Repository
+```bash
+git clone https://github.com/yourusername/swiggy-clone.git
+cd swiggy-clone
 
 - Vite
 - TypeScript

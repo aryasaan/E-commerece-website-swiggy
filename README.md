@@ -24,9 +24,9 @@ This is a food delivery application inspired by Swiggy, designed to connect user
 ## Installation
 
 ### Prerequisites
-- Node.js (v14 or higher)
+- Node.js
 - MongoDB (local or cloud instance)
-- A payment gateway account (Stripe/PayPal)
+- A payment gateway account.
 
 ### Clone the Repository
 ```bash

@@ -29,7 +29,7 @@ This is a food delivery application inspired by Swiggy, designed to connect user
 - A payment gateway account.
 
 ### Clone the Repository
-```bash
+
 git clone https://github.com/yourusername/swiggy-clone.git
 cd swiggy-clone
 

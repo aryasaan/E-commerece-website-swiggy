@@ -30,8 +30,6 @@ This is a food delivery application inspired by Swiggy, designed to connect user
 
 ### Clone the Repository
 
-git clone https://github.com/yourusername/swiggy-clone.git
-cd swiggy-clone
 
 - Vite
 - TypeScript

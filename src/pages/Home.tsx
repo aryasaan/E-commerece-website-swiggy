@@ -69,7 +69,7 @@ const RESTAURANTS = [
         id: "2-3", 
         name: "Garlic Bread", 
         price: 4.99,
-        image: "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=500",
+        image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500",
         description: "Freshly baked bread with garlic butter"
       },
     ],

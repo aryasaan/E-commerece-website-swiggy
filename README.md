@@ -1,4 +1,10 @@
 ### features
+
+## Demo Link
+<pre>
+  <a href = "https://swiggy-taste-friend.netlify.app/">https://swiggy-taste-friend.netlify.app/</a>
+</pre> 
+
 # Swiggy Clone Application
 
 ## Overview
@@ -36,9 +42,6 @@ This is a food delivery application inspired by Swiggy, designed to connect user
 - shadcn-ui
 - Tailwind CSS
 
-## Demo Link
-<pre>
-  <a href = "https://swiggy-taste-friend.netlify.app/">https://swiggy-taste-friend.netlify.app/</a>
-</pre>
+
 
 

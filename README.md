@@ -2,7 +2,7 @@
 
 ## Demo Link
 <pre>
-  <a href = "https://swiggy-taste-friend.netlify.app/">https://swiggy-taste-friend.netlify.app/</a>
+  <a href = "https://e-commerece-website-swiggy-8fqpr2za3.vercel.app/">https://e-commerece-website-swiggy-8fqpr2za3.vercel.app/</a>
 </pre> 
 
 # Swiggy Clone Application

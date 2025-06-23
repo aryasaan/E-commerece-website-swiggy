@@ -18,8 +18,7 @@ This is a food delivery application inspired by Swiggy, designed to connect user
 - **Frontend:** React.js, Redux, HTML, CSS
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
-- **Payment Gateway:** Stripe or PayPal
-- **Real-time Communication:** Socket.io (for order tracking)
+
 
 ## Installation
 
